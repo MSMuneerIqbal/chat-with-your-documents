@@ -24,14 +24,16 @@ def format_response(response_text):
     return "\n".join(items)  # Join with new lines
 
 load_dotenv()
+# USE this in local enviroments
+#api_key= os.getenv("GOOGLE_API_KEY")
 
 st.title("PDF Chatbot with Gemini")
 
 # Sidebar for file upload
 st.sidebar.title("Upload PDF")
 uploaded_file = st.sidebar.file_uploader("Choose a PDF file", type="pdf")
-
-llm = GoogleGenerativeAI(model="gemini-2.0-pro-exp-02-05", google_api_key=os.getenv("GOOGLE_API_KEY"))
+api_key = st.secrets["GOOGLE_API_KEY"]
+llm = GoogleGenerativeAI(model="gemini-2.0-pro-exp-02-05", google_api_key=api_key)
 memory = ConversationBufferWindowMemory(k=5)
 
 if "chat_history" not in st.session_state:
