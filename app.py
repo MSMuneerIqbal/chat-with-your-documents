@@ -33,7 +33,7 @@ st.title("PDF Chatbot with Gemini")
 st.sidebar.title("Upload PDF")
 uploaded_file = st.sidebar.file_uploader("Choose a PDF file", type="pdf")
 api_key = st.secrets["GOOGLE_API_KEY"]
-llm = GoogleGenerativeAI(model="gemini-2.0-pro-exp-02-05", google_api_key=api_key)
+llm = GoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=api_key)
 memory = ConversationBufferWindowMemory(k=5)
 
 if "chat_history" not in st.session_state:
